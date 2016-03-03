@@ -4,9 +4,89 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Сalorie_Сounter"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Счетчик калорий" Width="400">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Настройки"/>
+            <MenuItem Header="О приложении"/>
+        </Menu>
+        <DatePicker Grid.Row="1" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateFormat="Long" Margin="5"/>
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Завтрак" FontSize="26"/>
+                <StackPanel Grid.Row="1" Margin="5">
+                    <TextBlock Text="Блюдо 1" FontSize="16"/>
+                    <TextBlock Text="Блюдо 2" FontSize="16"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
+                    <TextBlock Text="Статистика 1" FontSize="16"/>
+                    <TextBlock Text="Статистика 2" FontSize="16"/>
+                </StackPanel>
+                <Button Content="Добавить" Grid.Row="2" Margin="5" Click="Button_Click"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Обед" FontSize="26"/>
+                <StackPanel Grid.Row="1" Margin="5">
+                    <TextBlock Text="Блюдо 1" FontSize="16"/>
+                    <TextBlock Text="Блюдо 2" FontSize="16"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
+                    <TextBlock Text="Статистика 1" FontSize="16"/>
+                    <TextBlock Text="Статистика 2" FontSize="16"/>
+                </StackPanel>
+                <Button Content="Добавить" Grid.Row="2" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="2" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Ужин" FontSize="26"/>
+                <StackPanel Grid.Row="1" Margin="5">
+                    <TextBlock Text="Блюдо 1" FontSize="16"/>
+                    <TextBlock Text="Блюдо 2" FontSize="16"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
+                    <TextBlock Text="Статистика 1" FontSize="16"/>
+                    <TextBlock Text="Статистика 2" FontSize="16"/>
+                </StackPanel>
+                <Button Content="Добавить" Grid.Row="2" Margin="5"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
