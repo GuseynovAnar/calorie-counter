@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace Сalorie_Сounter.DataBase
 {
-    public class Dish
+    public class EatingType
     {
         public int Id { get; set; }
-        public Category Category { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public int Calories { get; set; }
         public virtual List<EatingHistoryItem> EatingHistoryItems { get; set; }
     }
 }
