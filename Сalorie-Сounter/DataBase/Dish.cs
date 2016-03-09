@@ -14,7 +14,13 @@ namespace Сalorie_Сounter.DataBase
         [Required]
         public string Name { get; set; }
         [Required]
-        public int Calories { get; set; }
+        public float Calories { get; set; }
+        [Required]
+        public float Proteins { get; set; }
+        [Required]
+        public float Fats { get; set; }
+        [Required]
+        public float Carbohydrates { get; set; }
         public virtual List<EatingHistoryItem> EatingHistoryItems { get; set; }
     }
 }
