@@ -13,8 +13,16 @@ namespace Сalorie_Сounter.DataBase
         [Required]
         public DateTime Date { get; set; }
         [Required]
-        public EatingType EatingType { get; set; }
-        [Required]
         public Dish Dish { get; set; }
+        [Required]
+        public float Quantity { get; set; }
+        [Required]
+        public float Calories { get; set; }
+        [Required]
+        public float Proteins { get; set; }
+        [Required]
+        public float Fats { get; set; }
+        [Required]
+        public float Carbohydrates { get; set; }
     }
 }

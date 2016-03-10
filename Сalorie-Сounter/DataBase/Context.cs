@@ -11,7 +11,6 @@ namespace Сalorie_Сounter.DataBase
     {
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<EatingType> EatingTypes { get; set; }
         public DbSet<EatingHistoryItem> EatingHistory { get; set; }
     }
 }

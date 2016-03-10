@@ -23,11 +23,12 @@ namespace Сalorie_Сounter
         public MainWindow()
         {
             InitializeComponent();
+            DataBase.DataBaseRepository repo = new DataBase.DataBaseRepository();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

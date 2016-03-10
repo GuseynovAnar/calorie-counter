@@ -84,7 +84,6 @@
     <Compile Include="DataBase\DataBaseRepository.cs" />
     <Compile Include="DataBase\Dish.cs" />
     <Compile Include="DataBase\EatingHistoryItem.cs" />
-    <Compile Include="DataBase\EatingType.cs" />
     <Compile Include="StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
