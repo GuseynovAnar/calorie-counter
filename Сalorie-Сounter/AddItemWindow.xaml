@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Сalorie_Сounter"
         mc:Ignorable="d"
-        Title="Добавить блюдо" Height="300" Width="300">
+        Title="Добавить блюдо" MinWidth="380" MaxWidth="400">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+            <DataGrid HorizontalAlignment="Center" Name="DishesData" ItemsSource="{Binding AllDishes}" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Блюдо" Binding="{Binding Name}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Калории" Binding="{Binding Calories}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Белки" Binding="{Binding Proteins}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Жиры" Binding="{Binding Fats}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Углеводы" Binding="{Binding Carbohydrates}"/>
+                    <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Добавить" Click="AddButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Количество (в граммах):" Margin="5"/>
+                            <TextBox Grid.Column="1" MinWidth="70" Margin="5"/>
+                            <Button Grid.Column="2" Content="Добавить" Margin="5" Click="Button_Click"/>
+                        </Grid>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </ScrollViewer>
+        <Button Grid.Row="2" Content="Вернуться"  Margin="5" Click="Button_Click_1"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Добавить новое блюдо" Margin="5" Click="Button_Click_2"/>
     </Grid>
 </Window>
