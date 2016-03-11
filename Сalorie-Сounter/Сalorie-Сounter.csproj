@@ -87,6 +87,7 @@
     <Compile Include="StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddItemWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewItemWindowViewModel.cs" />
     <Page Include="AddItemWindow.xaml">
