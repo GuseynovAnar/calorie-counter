@@ -7,86 +7,54 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Счетчик калорий" Width="400">
+    <Window.Resources>
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="26"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu>
-            <MenuItem Header="Настройки"/>
-            <MenuItem Header="О приложении"/>
+            <MenuItem Header="Статистика" Click="MenuItem_Click"/>
+            <MenuItem Header="О приложении" Click="MenuItem_Click_1"/>
         </Menu>
-        <DatePicker Grid.Row="1" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateFormat="Long" Margin="5"/>
+        <DatePicker Grid.Row="1" Name="datePicker" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateFormat="Long" Margin="5" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
         <Grid Grid.Row="2" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Завтрак" FontSize="26"/>
-                <StackPanel Grid.Row="1" Margin="5">
-                    <TextBlock Text="Блюдо 1" FontSize="16"/>
-                    <TextBlock Text="Блюдо 2" FontSize="16"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
-                    <TextBlock Text="Статистика 1" FontSize="16"/>
-                    <TextBlock Text="Статистика 2" FontSize="16"/>
-                </StackPanel>
-                <Button Content="Добавить" Grid.Row="2" Margin="5" Click="Button_Click"/>
-            </Grid>
-            <Grid Grid.Row="1" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Обед" FontSize="26"/>
-                <StackPanel Grid.Row="1" Margin="5">
-                    <TextBlock Text="Блюдо 1" FontSize="16"/>
-                    <TextBlock Text="Блюдо 2" FontSize="16"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
-                    <TextBlock Text="Статистика 1" FontSize="16"/>
-                    <TextBlock Text="Статистика 2" FontSize="16"/>
-                </StackPanel>
-                <Button Content="Добавить" Grid.Row="2" Margin="5"/>
-            </Grid>
-            <Grid Grid.Row="2" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Ужин" FontSize="26"/>
-                <StackPanel Grid.Row="1" Margin="5">
-                    <TextBlock Text="Блюдо 1" FontSize="16"/>
-                    <TextBlock Text="Блюдо 2" FontSize="16"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
-                    <TextBlock Text="Статистика 1" FontSize="16"/>
-                    <TextBlock Text="Статистика 2" FontSize="16"/>
-                </StackPanel>
-                <Button Content="Добавить" Grid.Row="2" Margin="5"/>
-            </Grid>
+            <TextBlock Text="Обзор дня" Style="{StaticResource HeaderStyle}"/>
+            <DataGrid Grid.Row="1" Name="dataGrid" ItemsSource="{Binding DailyHistory}" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" IsEnabled="{Binding IsCurrentDate}" HorizontalAlignment="Center" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Блюдо" Binding="{Binding Dish.(Name)}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Количество" Binding="{Binding Quantity}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Калории" Binding="{Binding Calories}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Белки" Binding="{Binding Proteins}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Жиры" Binding="{Binding Fats}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Углеводы" Binding="{Binding Carbohydrates}"/>
+                    <!--<DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Удалить"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>-->
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Button Content="Удалить" Click="Button_Click_1"/>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+            <Button Content="Добавить" Grid.Row="2" HorizontalAlignment="Center" Width="200" Margin="5" IsEnabled="{Binding IsCurrentDate}" Click="Button_Click"/>
         </Grid>
+        <TextBlock Grid.Row="3" Text="Статистика за день" Style="{StaticResource HeaderStyle}"/>
     </Grid>
 </Window>
