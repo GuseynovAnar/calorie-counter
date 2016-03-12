@@ -6,7 +6,42 @@
         xmlns:local="clr-namespace:Сalorie_Сounter"
         mc:Ignorable="d"
         Title="Новое блюдо" Height="300" Width="300">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Категория"/>
+        <ComboBox Grid.Column="1" Name="Category" Margin="5" ItemsSource="{Binding Categories}" DisplayMemberPath="Name">
+        </ComboBox>
+        <TextBlock Grid.Row="1" Text="Название"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="Name" MinWidth="100"/>
+        <TextBlock Grid.Row="2" Text="Количество калорий"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="Calories" MinWidth="100"/>
+        <TextBlock Grid.Row="3" Text="Количество белков"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="Proteins" MinWidth="100"/>
+        <TextBlock Grid.Row="4" Text="Количество жиров"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="Fats" MinWidth="100"/>
+        <TextBlock Grid.Row="5" Text="Количество углеводов"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="Carbohydrates" MinWidth="100"/>
+        <Button Grid.Row="6" Grid.ColumnSpan="2" Content="Добавить" Height="20" Margin="5" Click="Button_Click"/>
     </Grid>
 </Window>
