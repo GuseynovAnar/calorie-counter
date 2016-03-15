@@ -25,6 +25,8 @@ namespace Сalorie_Сounter.DataBase
         {
             using (_context = new Context())
             {
+                if (dish.Category != null)
+                    _context.Categories.Attach(dish.Category);
                 _context.Dishes.Add(dish);
                 _context.SaveChanges(); // async???
             }
@@ -43,7 +45,7 @@ namespace Сalorie_Сounter.DataBase
             using (_context = new Context())
             {
                 return (from d in _context.Dishes
-                        where d.Category == category
+                        where d.Category.Id == category.Id
                         select d).ToList();
             }
         }
@@ -98,23 +100,9 @@ namespace Сalorie_Сounter.DataBase
                 var request1 = (from eh in _context.EatingHistory
                                 where eh.Date == date.Date
                                 join d in _context.Dishes on eh.Dish equals d
-                                select d).ToList(); // ???
+                                select d).ToList(); // как это работает?!
                 return request;
             }
-        }
-
-        public List<EatingHistoryItem> GetDailyHistoryData(DateTime beginDate, DateTime endDate)
-        {
-            if (beginDate.Date > endDate.Date)
-                return null;
-            var request = (from eh in _context.EatingHistory
-                           where eh.Date >= beginDate.Date && eh.Date <= endDate.Date
-                           select eh).ToList();
-            var request1 = (from eh in _context.EatingHistory
-                            where eh.Date >= beginDate.Date && eh.Date <= endDate.Date
-                            join d in _context.Dishes on eh.Dish equals d
-                            select d).ToList(); // ???
-            return request;
         }
     }
 }

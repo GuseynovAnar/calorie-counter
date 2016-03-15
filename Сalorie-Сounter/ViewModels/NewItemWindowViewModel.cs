@@ -10,8 +10,8 @@ namespace Calorie_Counter.ViewModels
 {
     class NewItemWindowViewModel
     {
-        DataBaseRepository _repo = new DataBaseRepository(); // vs ctor
-        ObservableCollection<Category> _categories;
+        private DataBaseRepository _repo = new DataBaseRepository();
+        private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
         {
             get
@@ -28,7 +28,7 @@ namespace Calorie_Counter.ViewModels
         {
             Categories = new ObservableCollection<Category>(_repo.GetCategories());
         }
-         
+
         public void AddNewItem(Dish dish)
         {
             _repo.AddDish(dish);
