@@ -5,49 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Сalorie_Сounter"
         mc:Ignorable="d"
-        Title="Добавить блюдо" MinWidth="380" MaxWidth="400">
-    <Grid>
+        Title="Добавить блюдо" MinWidth="380" MaxWidth="400" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="LightGreen">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
-            <DataGrid HorizontalAlignment="Center" Name="DishesData" ItemsSource="{Binding AllDishes}" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Margin="5">
-                <DataGrid.Columns>
-                    <DataGridTextColumn IsReadOnly="True" Header="Блюдо" Binding="{Binding Name}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Калории" Binding="{Binding Calories}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Белки" Binding="{Binding Proteins}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Жиры" Binding="{Binding Fats}"/>
-                    <DataGridTextColumn IsReadOnly="True" Header="Углеводы" Binding="{Binding Carbohydrates}"/>
-                    <!--<DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Добавить" Click="AddButton_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
-                </DataGrid.Columns>
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Количество (в граммах):" Margin="5"/>
-                            <TextBox Grid.Column="1" MinWidth="70" Margin="5"/>
-                            <Button Grid.Column="2" Content="Добавить" Margin="5" Click="Button_Click"/>
-                        </Grid>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-            </DataGrid>
-        </ScrollViewer>
-        <Button Grid.Row="2" Content="Вернуться"  Margin="5" Click="Button_Click_1"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Добавить новое блюдо" Margin="5" Click="Button_Click_2"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Выберите категорию:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox Grid.Column="1" Name="comboBox" Margin="5" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectionChanged="ComboBox_SelectionChanged"/>
+            <Button Grid.Column="2" Content="Сбросить выбор" Click="Button_Click_3"/>
+        </Grid>
+        <DataGrid Grid.Row="1" Name="dataGrid" ItemsSource="{Binding Dishes}" VerticalScrollBarVisibility="Auto" MaxHeight="400" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="Блюдо" Width="Auto" Binding="{Binding Name}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Калории" Binding="{Binding Calories}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Белки" Binding="{Binding Proteins}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Жиры" Binding="{Binding Fats}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Углеводы" Binding="{Binding Carbohydrates}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Количество (в граммах):" Margin="5"/>
+                        <TextBox Grid.Column="1" MinWidth="70" Margin="5"/>
+                        <Button Grid.Column="2" Content="Добавить" Click="Button_Click"/>
+                    </Grid>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Вернуться" Click="Button_Click_1"/>
+            <Button Grid.Column="1" Content="Добавить новое блюдо" Click="Button_Click_2"/>
+        </Grid>
     </Grid>
 </Window>

@@ -53,12 +53,14 @@ namespace Сalorie_Сounter
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            AboutWindow window = new AboutWindow();
+            window.ShowDialog();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            dataGrid.UnselectAll();
+            grid.Focus();
         }
     }
 }

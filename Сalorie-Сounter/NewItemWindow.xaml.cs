@@ -31,12 +31,12 @@ namespace Сalorie_Сounter
             {
                 Dish dish = new Dish
                 {
-                    Category = (Category)this.Category.SelectedItem,
-                    Name = this.Name.Text,
-                    Calories = float.Parse(this.Calories.Text),
-                    Proteins = float.Parse(this.Proteins.Text),
-                    Fats = float.Parse(this.Fats.Text),
-                    Carbohydrates = float.Parse(this.Carbohydrates.Text)
+                    Category = (Category)this.comboBox.SelectedItem,
+                    Name = this.textBoxName.Text,
+                    Calories = float.Parse(this.textBoxCalories.Text),
+                    Proteins = float.Parse(this.textBoxProteins.Text),
+                    Fats = float.Parse(this.textBoxFats.Text),
+                    Carbohydrates = float.Parse(this.textBoxCarbohydrates.Text)
                 };
                 _viewModel.AddNewItem(dish);
                 this.Close();

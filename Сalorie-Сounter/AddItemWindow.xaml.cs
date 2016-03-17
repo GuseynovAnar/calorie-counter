@@ -23,12 +23,11 @@ namespace Сalorie_Сounter
         {
             InitializeComponent();
             this.DataContext = _viewModel;
-            _viewModel.GetAllDishes();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Dish selectedDish = DishesData.SelectedItem as Dish;
+            Dish selectedDish = dataGrid.SelectedItem as Dish;
             Button button = sender as Button;
             Grid grid = button.Parent as Grid;
             TextBox textBox = grid.Children[1] as TextBox;
@@ -60,7 +59,20 @@ namespace Сalorie_Сounter
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            _viewModel.GetAllDishes();
+            if (comboBox.SelectedItem != null)
+                _viewModel.GetDishes((Category)comboBox.SelectedItem);
+            else
+                _viewModel.GetDishes();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.GetDishes((Category)comboBox.SelectedItem);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            comboBox.SelectedIndex = -1;
         }
     }
 }

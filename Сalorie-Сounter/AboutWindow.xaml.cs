@@ -14,14 +14,16 @@ using System.Windows.Shapes;
 
 namespace Сalorie_Сounter
 {
-    /// <summary>
-    /// Interaction logic for StatisticsWindow.xaml
-    /// </summary>
-    public partial class StatisticsWindow : Window
+    public partial class AboutWindow : Window
     {
-        public StatisticsWindow()
+        public AboutWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
