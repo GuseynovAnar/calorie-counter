@@ -52,6 +52,7 @@ namespace Calorie_Counter.ViewModels
             }
         }
         private DataBaseRepository _repo = new DataBaseRepository();
+        private FoodStatisticsCounter _counter = new FoodStatisticsCounter();
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string name)
@@ -67,35 +68,14 @@ namespace Calorie_Counter.ViewModels
                 IsCurrentDate = true;
             else
                 IsCurrentDate = false;
-            DailyFoodStatistics = CountFoodStats(DailyHistory.ToList());
+            DailyFoodStatistics = _counter.CountFoodStatistics(DailyHistory.ToList());
         }
 
         public void DeleteItem(EatingHistoryItem item)
         {
             _repo.RemoveEatingHistoryItem(item);
             DailyHistory.Remove(item);
-            DailyFoodStatistics = CountFoodStats(DailyHistory.ToList());
+            DailyFoodStatistics = _counter.CountFoodStatistics(DailyHistory.ToList());
         }
-
-        private FoodStats CountFoodStats(List<EatingHistoryItem> history)
-        {
-            FoodStats stats = new FoodStats();
-            foreach (var item in history)
-            {
-                stats.Calories += item.Calories;
-                stats.Carbohydrates += item.Carbohydrates;
-                stats.Fats += item.Fats;
-                stats.Proteins += item.Proteins;
-            }
-            return stats;
-        }
-    }
-
-    public class FoodStats
-    {
-        public float Calories { get; set; }
-        public float Proteins { get; set; }
-        public float Fats { get; set; }
-        public float Carbohydrates { get; set; }
     }
 }

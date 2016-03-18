@@ -21,7 +21,7 @@ namespace Сalorie_Сounter.ViewModels
             set
             {
                 _dishes = value;
-                OnPropertyChanged("AllDishes");
+                OnPropertyChanged("Dishes");
             }
         }
         private ObservableCollection<Category> _categories;
