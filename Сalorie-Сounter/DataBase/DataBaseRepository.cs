@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,81 @@ namespace Сalorie_Сounter.DataBase
                 if (!_context.Database.Exists())
                 {
                     _context.Database.Create();
+                    var categories = LoadCategoriesFromFile();
+                    _context.Categories.AddRange(categories);
+                    var dishes = LoadDishesFromFile();
+                    _context.Dishes.AddRange(dishes);
+                    var history = LoadHistoryFromFile();
+                    _context.EatingHistory.AddRange(history);
                     _context.SaveChanges();
                 }
             }
+        }
+
+        private List<Category> LoadCategoriesFromFile()
+        {
+            var categories = new List<Category>();
+            using (var sr = new StreamReader("../../DataBaseFiles/categories.txt"))
+            {
+                sr.ReadLine();
+                while (!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine();
+                    var items = line.Split('\t');
+                    categories.Add(new Category
+                    {
+                        Name = items[0]
+                    });
+                }
+            }
+            return categories;
+        }
+        private List<Dish> LoadDishesFromFile()
+        {
+            var dishes = new List<Dish>();
+            using (var sr = new StreamReader("../../DataBaseFiles/dishes.txt"))
+            {
+                sr.ReadLine();
+                while (!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine();
+                    var items = line.Split('\t');
+                    dishes.Add(new Dish
+                    {
+                        Name = items[0],
+                        Calories = float.Parse(items[1]),
+                        Proteins = float.Parse(items[2]),
+                        Fats = float.Parse(items[3]),
+                        Carbohydrates = float.Parse(items[4]),
+                        CategoryId = int.Parse(items[5])
+                    });
+                }
+            }
+            return dishes;
+        }
+        private List<EatingHistoryItem> LoadHistoryFromFile()
+        {
+            var history = new List<EatingHistoryItem>();
+            using (var sr = new StreamReader("../../DataBaseFiles/history.txt"))
+            {
+                sr.ReadLine();
+                while (!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine();
+                    var items = line.Split('\t');
+                    history.Add(new EatingHistoryItem
+                    {
+                        Date = DateTime.Parse(items[0]).Date,
+                        DishId = int.Parse(items[1]),
+                        Quantity = float.Parse(items[2]),
+                        Calories = float.Parse(items[3]),
+                        Proteins = float.Parse(items[4]),
+                        Fats = float.Parse(items[5]),
+                        Carbohydrates = float.Parse(items[6])
+                    });
+                }
+            }
+            return history;
         }
 
         public void AddDish(Dish dish)

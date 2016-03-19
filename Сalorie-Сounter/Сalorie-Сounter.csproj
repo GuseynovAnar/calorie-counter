@@ -163,13 +163,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="DataBaseFiles\Сalorie_Сounter.DataBase.Context.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DataBaseFiles\Сalorie_Сounter.DataBase.Context_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="DataBaseFiles\categories.txt" />
+    <Resource Include="DataBaseFiles\dishes.txt" />
+    <Resource Include="DataBaseFiles\history.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
