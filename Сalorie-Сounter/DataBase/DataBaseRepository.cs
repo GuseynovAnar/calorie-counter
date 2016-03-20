@@ -14,6 +14,8 @@ namespace Сalorie_Сounter.DataBase
         {
             using (_context = new Context())
             {
+                _context.Database.Delete();
+
                 if (!_context.Database.Exists())
                 {
                     _context.Database.Create();
@@ -59,10 +61,10 @@ namespace Сalorie_Сounter.DataBase
                     dishes.Add(new Dish
                     {
                         Name = items[0],
-                        Calories = float.Parse(items[1]),
-                        Proteins = float.Parse(items[2]),
-                        Fats = float.Parse(items[3]),
-                        Carbohydrates = float.Parse(items[4]),
+                        Proteins = float.Parse(items[1]),
+                        Fats = float.Parse(items[2]),
+                        Carbohydrates = float.Parse(items[3]),
+                        Calories = float.Parse(items[4]),
                         CategoryId = int.Parse(items[5])
                     });
                 }
@@ -84,10 +86,10 @@ namespace Сalorie_Сounter.DataBase
                         Date = DateTime.Parse(items[0]).Date,
                         DishId = int.Parse(items[1]),
                         Quantity = float.Parse(items[2]),
-                        Calories = float.Parse(items[3]),
-                        Proteins = float.Parse(items[4]),
-                        Fats = float.Parse(items[5]),
-                        Carbohydrates = float.Parse(items[6])
+                        Proteins = float.Parse(items[3]),
+                        Fats = float.Parse(items[4]),
+                        Carbohydrates = float.Parse(items[5]),
+                        Calories = float.Parse(items[6])
                     });
                 }
             }
