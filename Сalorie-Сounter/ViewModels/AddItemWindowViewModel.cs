@@ -45,17 +45,20 @@ namespace Сalorie_Сounter.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
+        // получение блюд и категорий из бд при создании вьюмодели
         public AddItemWindowViewModel()
         {
             GetDishes();
             Categories = new ObservableCollection<Category>(_repo.GetCategories());
         }
 
+        // получение списка всех блюд из бд
         public void GetDishes()
         {
             Dishes = new ObservableCollection<Dish>(_repo.GetDishes());
         }
 
+        // получение списка всех блюд конкретной категории из бд
         public void GetDishes(Category category)
         {
             if (category != null)
@@ -64,6 +67,7 @@ namespace Сalorie_Сounter.ViewModels
                 GetDishes();
         }
 
+        // добавление записи в таблицу истории
         public void AddDishToHistory(Dish dish, float quantity)
         {
             _repo.AddEatingHistoryItem(dish, quantity);

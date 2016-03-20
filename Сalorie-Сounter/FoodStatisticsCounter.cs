@@ -9,6 +9,7 @@ namespace Calorie_Counter
 {
     public class FoodStatisticsCounter
     {
+        // подсчет суммарной статистики на основе истории потребления
         public FoodStats CountFoodStatistics(List<EatingHistoryItem> history)
         {
             FoodStats stats = new FoodStats();

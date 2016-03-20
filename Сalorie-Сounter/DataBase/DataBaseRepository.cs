@@ -10,6 +10,7 @@ namespace Сalorie_Сounter.DataBase
     public class DataBaseRepository
     {
         Context _context;
+        // создание и инициализация бд из текстовых файлов
         public DataBaseRepository()
         {
             using (_context = new Context())
@@ -28,6 +29,7 @@ namespace Сalorie_Сounter.DataBase
             }
         }
 
+        // считывание categories.txt
         private List<Category> LoadCategoriesFromFile()
         {
             var categories = new List<Category>();
@@ -46,6 +48,8 @@ namespace Сalorie_Сounter.DataBase
             }
             return categories;
         }
+
+        // считывание dishes.txt
         private List<Dish> LoadDishesFromFile()
         {
             var dishes = new List<Dish>();
@@ -69,6 +73,8 @@ namespace Сalorie_Сounter.DataBase
             }
             return dishes;
         }
+
+        // считывание history.txt
         private List<EatingHistoryItem> LoadHistoryFromFile()
         {
             var history = new List<EatingHistoryItem>();
@@ -94,6 +100,7 @@ namespace Сalorie_Сounter.DataBase
             return history;
         }
 
+        // добавление нового блюда в бд
         public void AddDish(Dish dish)
         {
             using (_context = new Context())
@@ -101,10 +108,11 @@ namespace Сalorie_Сounter.DataBase
                 if (dish.Category != null)
                     _context.Categories.Attach(dish.Category);
                 _context.Dishes.Add(dish);
-                _context.SaveChanges(); // async???
+                _context.SaveChanges();
             }
         }
 
+        // получение списка блюд из бд
         public List<Dish> GetDishes()
         {
             using (_context = new Context())
@@ -113,6 +121,7 @@ namespace Сalorie_Сounter.DataBase
             }
         }
 
+        // получение списка блюд конкретной категории из бд
         public List<Dish> GetDishes(Category category)
         {
             using (_context = new Context())
@@ -123,6 +132,7 @@ namespace Сalorie_Сounter.DataBase
             }
         }
 
+        // получение списка категорий из бд
         public List<Category> GetCategories()
         {
             using (_context = new Context())
@@ -131,6 +141,7 @@ namespace Сalorie_Сounter.DataBase
             }
         }
 
+        // добавление записи в таблицу истории
         public void AddEatingHistoryItem(Dish dish, float quantity)
         {
             EatingHistoryItem eatingHistoryItem = new EatingHistoryItem
@@ -151,6 +162,7 @@ namespace Сalorie_Сounter.DataBase
             }
         }
 
+        // удаление записи из таблицы истории
         public void RemoveEatingHistoryItem(EatingHistoryItem item)
         {
             using (_context = new Context())
@@ -163,6 +175,7 @@ namespace Сalorie_Сounter.DataBase
             }
         }
 
+        // получение истории за конкретную дату
         public List<EatingHistoryItem> GetDailyHistoryData(DateTime date)
         {
             using (_context = new Context())
@@ -173,7 +186,7 @@ namespace Сalorie_Сounter.DataBase
                 var request1 = (from eh in _context.EatingHistory
                                 where eh.Date == date.Date
                                 join d in _context.Dishes on eh.Dish equals d
-                                select d).ToList(); // как это работает?!
+                                select d).ToList();
                 return request;
             }
         }

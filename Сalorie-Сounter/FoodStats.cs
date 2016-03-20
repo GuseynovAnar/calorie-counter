@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calorie_Counter
 {
+    // класс для удобного вывода статистики
     public class FoodStats
     {
         public float Calories { get; set; }

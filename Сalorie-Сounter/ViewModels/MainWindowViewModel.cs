@@ -61,6 +61,7 @@ namespace Calorie_Counter.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
+        // получение полной информации за конкретный день - список блюд, возможность добавления новых блюд и статистику
         public void GetDailyInfo(DateTime date)
         {
             DailyHistory = new ObservableCollection<EatingHistoryItem>(_repo.GetDailyHistoryData(date));
@@ -71,6 +72,7 @@ namespace Calorie_Counter.ViewModels
             DailyFoodStatistics = _counter.CountFoodStatistics(DailyHistory.ToList());
         }
 
+        // удаление элемента из таблицы с историей и обновление статистики
         public void DeleteItem(EatingHistoryItem item)
         {
             _repo.RemoveEatingHistoryItem(item);
