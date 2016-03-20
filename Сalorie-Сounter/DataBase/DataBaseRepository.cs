@@ -14,8 +14,6 @@ namespace Сalorie_Сounter.DataBase
         {
             using (_context = new Context())
             {
-                _context.Database.Delete();
-
                 if (!_context.Database.Exists())
                 {
                     _context.Database.Create();
